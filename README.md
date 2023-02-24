@@ -1,1 +1,3 @@
-# Unity Skeleton
+# Tobi's Utils
+
+A collection of Unity scripts
