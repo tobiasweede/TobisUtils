@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System.IO;
 using System;
 using UnityEngine.SceneManagement;
 
-public class Logging : MonoBehaviour
+public class FileWriter : MonoBehaviour
 {
     public static int logSize = 3;
     public string folder = "/Recordings/";
     public string logname = "dummy";
     private bool logging = false;
     private string[] logData = new string[logSize];
-    prinvate logPath = "";
+    private string logPath = "";
+    private string fileName = "";
+    private string path = "";
     private StreamWriter writer = null;
     private static readonly string[] columnNames = {
         "headerText",
@@ -26,10 +24,10 @@ public class Logging : MonoBehaviour
     {
         // create filename with timestamp
         DateTime now = DateTime.Now;
-        string fileName = string.Format("{0}-{1:00}-{2:00}-{3:00}h{4:00}m-{5}-" + logname, now.Year, now.Month, now.Day, now.Hour, now.Minute, SceneManager.GetActiveScene().name);
-        string logPath = Application.persistentDataPath + folder;
+        fileName = string.Format("{0}-{1:00}-{2:00}-{3:00}h{4:00}m-{5}-" + logname, now.Year, now.Month, now.Day, now.Hour, now.Minute, SceneManager.GetActiveScene().name);
+        logPath = Application.persistentDataPath + folder;
         if (!Directory.Exists(logPath)) Directory.CreateDirectory(logPath);
-        string path = logPath + fileName + ".csv";
+        path = logPath + fileName + ".csv";
 
         StartLogging();
     }
